@@ -1,0 +1,3504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cercanos Care | Connecting Care & Community</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Cercanos Brand Colors */
+            --orange: #de8130;
+            --orange-light: #e89a54;
+            --tan: #a47864;
+            --deep-purple: #2d1628;
+            --blush: #e6d9d3;
+            --brown: #5a4b44;
+            --olive-green: #777b41;
+            --gold: #f3bf57;
+            --navy-blue: #2f6089;
+            --purple: #652875;
+
+            /* Light theme palette - Whiter tones */
+            --bg-light: #FAFAF8;
+            --bg-cream: #F5F5F3;
+            --bg-card: #ffffff;
+            --bg-card-hover: #fefefe;
+            --text-dark: #2d1628;
+            --text-gray: #5a4b44;
+            --text-muted: #8a7a70;
+            --gradient-orange: linear-gradient(135deg, #de8130 0%, #f3bf57 100%);
+            --gradient-warm: linear-gradient(135deg, #e6d9d3 0%, #faf8f6 100%);
+            --shadow-soft: 0 4px 20px rgba(45, 22, 40, 0.08);
+            --shadow-card: 0 8px 40px rgba(45, 22, 40, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 4%;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: var(--olive-green);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: var(--olive-green);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-heart {
+            width: 44px;
+            height: 44px;
+            background-image: url('data:image/svg+xml,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M75 15c20 8 25 35 15 55-8 16-30 28-40 28S15 86 8 70C-2 50 3 23 23 15c12-5 22-2 27 10 5-12 15-15 25-10z" fill="%23f3bf57"/><path d="M70 22c15 6 20 28 12 45-7 14-25 23-34 23S18 81 12 67C3 50 8 28 23 22c10-4 18-1 22 9 4-10 13-13 25-9z" fill="%23de8130"/><path d="M30 30c-8 4-12 18-6 32 5 11 18 18 26 18" fill="%23c86d28" opacity="0.4"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .logo-text {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-grow: 1;
+            margin-left: 1rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .lang-toggle {
+            display: flex;
+            background: var(--blush);
+            border-radius: 20px;
+            padding: 4px;
+            gap: 4px;
+            margin-left: auto;
+        }
+
+        .lang-btn {
+            padding: 6px 14px;
+            border: none;
+            background: transparent;
+            color: var(--text-gray);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--orange);
+            color: white;
+        }
+
+        .cta-nav {
+            background: var(--gold);
+            color: var(--deep-purple) !important;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        }
+
+        .cta-nav:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(243, 191, 87, 0.5);
+            background: white;
+        }
+
+        .cta-nav::after {
+            display: none !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 120px 4% 120px;
+            margin-bottom: -2px;
+            background: url('https://images.squarespace-cdn.com/content/v1/684ad6d46763217713452117/cc593303-889b-4c93-8d61-87618d0470ff/family-enjoying-time-together-at-home.jpg') center/cover no-repeat;
+            overflow: visible;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%);
+            z-index: 0;
+        }
+
+        .hero-bg-shapes {
+            display: none;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .shape-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(222, 129, 48, 0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+        }
+
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(119, 123, 65, 0.1) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .shape-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(243, 191, 87, 0.2) 0%, transparent 70%);
+            top: 40%;
+            left: 30%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--orange);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(222, 129, 48, 0.4);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-badge i {
+            font-size: 1rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.75rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            color: white;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero h1 span {
+            color: white;
+            background: none;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: unset;
+            background-clip: unset;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+            max-width: 520px;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .hero-value-props {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            max-width: 580px;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .value-prop {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+            font-size: 1.05rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+
+        .value-prop i {
+            color: var(--orange);
+            font-size: 1.1rem;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-benefits {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.8s backwards;
+            margin-bottom: 3rem;
+        }
+
+        .benefit-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 1.25rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            background: rgba(255,255,255,0.95);
+            color: var(--deep-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .benefit-item:hover i {
+            color: var(--orange);
+        }
+
+        .benefit-item i {
+            color: var(--gold);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .benefit-item .benefit-detail {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            background: white;
+            color: var(--text-gray);
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 400;
+            line-height: 1.5;
+            width: 280px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .benefit-item .benefit-detail::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-bottom-color: white;
+        }
+
+        .benefit-item:hover .benefit-detail {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--olive-green);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(222, 129, 48, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(119, 123, 65, 0.4);
+            background: #8a8f4d;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: var(--text-dark);
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            border: 2px solid var(--blush);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+        }
+
+        .hero-visual {
+            position: absolute;
+            right: 6%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 38%;
+            max-width: 420px;
+            z-index: 2;
+        }
+
+        .hero-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .floating-card {
+            background: rgba(255,255,255,0.97);
+            border-radius: 16px;
+            padding: 1rem 1.25rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            animation: fadeSlideIn 0.6s ease backwards;
+            width: 100%;
+            max-width: 380px;
+            backdrop-filter: blur(10px);
+        }
+
+        .floating-card.card-1 { animation-delay: 0.1s; }
+        .floating-card.card-2 { animation-delay: 0.2s; }
+        .floating-card.card-3 { animation-delay: 0.3s; }
+        .floating-card.card-4 { animation-delay: 0.4s; }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .stat-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+        }
+
+        .stat-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .floating-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .floating-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(45, 22, 40, 0.12);
+        }
+
+        .stat-icon.orange { background: rgba(222, 129, 48, 0.12); color: var(--orange); }
+        .stat-icon.olive { background: rgba(119, 123, 65, 0.12); color: var(--olive-green); }
+        .stat-icon.gold { background: rgba(243, 191, 87, 0.15); color: #b8860b; }
+        .stat-icon.purple { background: rgba(101, 40, 117, 0.1); color: #652875; }
+
+        .stat-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--deep-purple);
+            margin-bottom: 0.15rem;
+        }
+
+        .stat-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Wave Dividers */
+        .wave-divider {
+            width: 100%;
+            margin-top: -50px;
+            position: relative;
+            z-index: 5;
+            line-height: 0;
+        }
+
+        .wave-divider img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .wave-divider-thin {
+            width: 100%;
+            height: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wave-divider-thin svg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Value Prop Section - Redesigned for Seniors */
+        .value-section {
+            padding: 5rem 4% 6rem;
+            background: var(--bg-light);
+        }
+
+        .value-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .value-header h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            margin-bottom: 1rem;
+        }
+
+        .value-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* The 3 Promises */
+        .promises-section {
+            max-width: 1100px;
+            margin: 0 auto 5rem;
+        }
+
+        .promises-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .promise-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--orange);
+        }
+
+        .promise-card:nth-child(2)::before {
+            background: var(--olive-green);
+        }
+
+        .promise-card:nth-child(3)::before {
+            background: var(--gold);
+        }
+
+        .promise-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        .promise-number {
+            width: 50px;
+            height: 50px;
+            background: var(--orange);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Quicksand', sans-serif;
+            margin: 0 auto 1.5rem;
+        }
+
+        .promise-card:nth-child(2) .promise-number {
+            background: var(--olive-green);
+        }
+
+        .promise-card:nth-child(3) .promise-number {
+            background: var(--gold);
+            color: var(--deep-purple);
+        }
+
+        .promise-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--deep-purple);
+            margin-bottom: 1rem;
+            font-family: 'Quicksand', sans-serif;
+            line-height: 1.3;
+        }
+
+        .promise-card p {
+            font-size: 1.05rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Care Team - Triangle Layout */
+        .care-team-section {
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+        }
+
+        .care-team-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .care-team-header h3 {
+            font-size: 1.75rem;
+            color: var(--deep-purple);
+            font-family: 'Quicksand', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .care-team-header p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        .care-team-wrapper {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Main triangle layout */
+        .care-triangle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding: 2rem 0;
+            padding-top: 5rem;
+        }
+
+        .care-triangle-inner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6rem;
+            position: relative;
+        }
+
+        /* SVG for connecting arrows */
+        .triangle-arrows {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .triangle-arrows path {
+            stroke: var(--olive-green);
+            stroke-width: 3;
+            opacity: 0.8;
+        }
+
+        /* Arrow markers */
+        .triangle-arrows marker polygon {
+            fill: var(--olive-green);
+        }
+
+        /* Main cards (PCP, YOU, Cercanos) */
+        .main-entity {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .entity-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1rem 1.25rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-width: 140px;
+        }
+
+        .entity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .entity-card.pcp {
+            border-color: var(--navy-blue);
+        }
+
+        .entity-card.pcp:hover {
+            border-color: var(--navy-blue);
+            background: linear-gradient(135deg, rgba(47, 96, 137, 0.05), white);
+        }
+
+        .entity-card.cercanos {
+            border-color: var(--olive-green);
+            position: relative;
+        }
+
+        .entity-card.cercanos::after {
+            content: '';
+            position: absolute;
+            bottom: -2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 2.5rem;
+            background: var(--olive-green);
+            opacity: 0.7;
+        }
+
+        .entity-card.cercanos:hover {
+            border-color: var(--olive-green);
+            background: linear-gradient(135deg, rgba(119, 123, 65, 0.05), white);
+        }
+
+        .entity-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-size: 1.25rem;
+            color: white;
+        }
+
+        .entity-card.pcp .entity-icon {
+            background: var(--navy-blue);
+        }
+
+        .entity-card.cercanos .entity-icon {
+            background: var(--olive-green);
+        }
+
+        .entity-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--deep-purple);
+            margin-bottom: 0.15rem;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .entity-card p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Patient Center - YOU */
+        .patient-center {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: var(--deep-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 0 12px 40px rgba(45, 22, 40, 0.35);
+            border: 4px solid var(--gold);
+            z-index: 3;
+        }
+
+        .patient-center i {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 0.15rem;
+        }
+
+        .patient-center span {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Cercanos Team Dropdown - Horizontal below */
+        .cercanos-team-dropdown {
+            background: white;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 12px 50px rgba(0,0,0,0.18);
+            border: 2px solid var(--olive-green);
+            z-index: 10;
+            width: 100%;
+            max-width: 900px;
+            margin: 2.5rem auto 0;
+            position: relative;
+        }
+
+        .cercanos-team-dropdown::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: -14px;
+            transform: translateX(-50%);
+            border-left: 14px solid transparent;
+            border-right: 14px solid transparent;
+            border-bottom: 14px solid var(--olive-green);
+        }
+
+        .cercanos-team-dropdown::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: -11px;
+            transform: translateX(-50%);
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 12px solid white;
+        }
+
+        .dropdown-header {
+            text-align: center;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(119, 123, 65, 0.2);
+            margin-bottom: 0.75rem;
+        }
+
+        .dropdown-header h5 {
+            font-size: 0.9rem;
+            color: var(--olive-green);
+            font-weight: 700;
+            margin: 0;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .coach-list {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.5rem;
+        }
+
+        .coach-list.coach-list-5 {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        /* Doctor Row - Top of team section */
+        .doctor-row {
+            margin-bottom: 0.75rem;
+        }
+
+        .doctor-card-top {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            height: 80px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .doctor-card-top .coach-flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s ease;
+            transform-style: preserve-3d;
+        }
+
+        .doctor-card-top:hover .coach-flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        .doctor-card-top .coach-flip-front,
+        .doctor-card-top .coach-flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 0.75rem 1.5rem;
+            text-align: left;
+        }
+
+        .doctor-card-top .coach-flip-front {
+            background: linear-gradient(135deg, rgba(119, 123, 65, 0.15), white);
+            border: 2px solid var(--olive-green);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .doctor-card-top .coach-flip-back {
+            transform: rotateY(180deg);
+            background: var(--olive-green);
+            border: 2px solid var(--olive-green);
+            color: white;
+        }
+
+        .doctor-card-top .coach-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .doctor-card-top .coach-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .doctor-card-top .coach-info {
+            flex: 1;
+        }
+
+        .doctor-card-top .coach-flip-front h6 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--deep-purple);
+            margin: 0 0 0.2rem;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .doctor-card-top .coach-flip-front span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .doctor-card-top .coach-flip-back h6 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+        }
+
+        .doctor-card-top .coach-flip-back p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.95);
+            margin: 0;
+        }
+
+        /* Coach Flip Cards */
+        .coach-flip-card {
+            width: 100%;
+            height: 100px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .coach-flip-card.doctor-card {
+            height: 100px;
+            grid-column: span 2;
+        }
+
+        .coach-flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s ease;
+            transform-style: preserve-3d;
+        }
+
+        .coach-flip-card:hover .coach-flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        .coach-flip-front, .coach-flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            text-align: center;
+            border: 2px solid rgba(119, 123, 65, 0.2);
+            background: white;
+            overflow: hidden;
+        }
+
+        .coach-flip-back {
+            transform: rotateY(180deg);
+            background: var(--olive-green);
+            border-color: var(--olive-green);
+            color: white;
+        }
+
+        .coach-flip-card.doctor-card .coach-flip-front,
+        .coach-flip-card.doctor-card .coach-flip-back {
+            flex-direction: row;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            justify-content: flex-start;
+        }
+
+        .coach-flip-card.doctor-card .coach-flip-front {
+            background: linear-gradient(135deg, rgba(119, 123, 65, 0.08), white);
+            border-color: var(--olive-green);
+        }
+
+        .coach-flip-front .coach-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .coach-flip-card.doctor-card .coach-avatar {
+            width: 45px;
+            height: 45px;
+        }
+
+        .coach-flip-front .coach-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .coach-flip-front h6 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--deep-purple);
+            margin: 0.25rem 0 0.15rem;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .coach-flip-card.doctor-card .coach-flip-front h6 {
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .coach-flip-front span {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .coach-flip-card.doctor-card .coach-flip-front span {
+            font-size: 0.75rem;
+        }
+
+        .coach-flip-front .coach-info {
+            text-align: left;
+            overflow: hidden;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .coach-flip-back h6 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin: 0 0 0.25rem;
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .coach-flip-back p {
+            font-size: 0.65rem;
+            margin: 0;
+            line-height: 1.35;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .coach-flip-card.doctor-card .coach-flip-back h6 {
+            font-size: 0.85rem;
+        }
+
+        .coach-flip-card.doctor-card .coach-flip-back p {
+            font-size: 0.75rem;
+        }
+
+        .coach-flip-card.doctor-card .coach-flip-back .coach-info {
+            text-align: left;
+        }
+
+        .coach-flip-front {
+            background: white;
+            border: 2px solid rgba(119, 123, 65, 0.2);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+        }
+
+        .coach-flip-card.doctor-card .coach-flip-front {
+            background: linear-gradient(135deg, rgba(119, 123, 65, 0.1), white);
+            border-color: var(--olive-green);
+            flex-direction: row;
+            gap: 1rem;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .coach-flip-back {
+            background: var(--olive-green);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .coach-flip-card.doctor-card .coach-flip-back {
+            flex-direction: row;
+            gap: 1rem;
+            padding: 0.75rem 1.5rem;
+            text-align: left;
+        }
+
+        .coach-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--olive-green);
+            flex-shrink: 0;
+        }
+
+        .coach-flip-card.doctor-card .coach-avatar {
+            width: 55px;
+            height: 55px;
+        }
+
+        .coach-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .coach-flip-front h6 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--deep-purple);
+            margin: 0.4rem 0 0.15rem;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .coach-flip-card.doctor-card .coach-flip-front h6 {
+            font-size: 0.95rem;
+            margin: 0 0 0.2rem;
+        }
+
+        .coach-flip-front span {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        .coach-flip-card.doctor-card .coach-flip-front span {
+            font-size: 0.8rem;
+        }
+
+        .coach-flip-back h6 {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+        }
+
+        .coach-flip-back p {
+            font-size: 0.65rem;
+            line-height: 1.35;
+            margin: 0;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .coach-flip-card.doctor-card .coach-flip-back p {
+            font-size: 0.75rem;
+        }
+
+        .coach-text-info {
+            flex: 1;
+        }
+
+        /* Connection labels */
+        .connection-label {
+            position: absolute;
+            background: white;
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--olive-green);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+            z-index: 5;
+            white-space: nowrap;
+            border: 1px solid rgba(119, 123, 65, 0.2);
+        }
+
+        .connection-label.show {
+            opacity: 1;
+        }
+
+        @media (max-width: 1200px) {
+            .care-triangle-inner {
+                gap: 4rem;
+            }
+            .triangle-arrows,
+            .connection-label {
+                display: none;
+            }
+            .coach-list {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .care-triangle-inner {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .entity-card {
+                min-width: 140px;
+            }
+            .cercanos-team-dropdown {
+                max-width: 500px;
+            }
+            .coach-list {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .coach-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .cercanos-team-dropdown {
+                max-width: 320px;
+                padding: 1rem;
+            }
+            .coach-flip-card {
+                height: 90px;
+            }
+            .coach-flip-card.doctor-card {
+                grid-column: span 2;
+            }
+        }
+
+        /* Testimonial Carousel */
+        .testimonial-carousel {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-slides {
+            position: relative;
+            overflow: hidden;
+            background: var(--deep-purple);
+            border-radius: 24px;
+            padding: 3rem;
+        }
+
+        .testimonial-slides::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            font-size: 6rem;
+            color: rgba(255,255,255,0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-slide {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .testimonial-slide blockquote {
+            font-size: 1.35rem;
+            color: white;
+            line-height: 1.7;
+            font-style: italic;
+            margin: 0 0 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-slide cite {
+            font-size: 1rem;
+            color: var(--gold);
+            font-style: normal;
+            font-weight: 600;
+            display: block;
+        }
+
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-dot.active {
+            background: var(--gold);
+            transform: scale(1.2);
+        }
+
+        .testimonial-dot:hover {
+            background: rgba(255,255,255,0.6);
+        }
+
+        .testimonial-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding: 0.875rem 2rem;
+            background: var(--olive-green);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-cta:hover {
+            background: #8a8f4d;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(119, 123, 65, 0.4);
+        }
+
+        @media (max-width: 900px) {
+            .promises-grid {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+        }
+
+        .value-header h2 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700;
+            color: var(--deep-purple);
+            margin-bottom: 1rem;
+        }
+
+        .value-header p {
+            color: var(--text-gray);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Interactive Toggle */
+        .approach-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 3rem;
+            background: var(--bg-cream);
+            border-radius: 50px;
+            padding: 6px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 16px 32px;
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 40px;
+            transition: all 0.4s ease;
+            color: var(--text-gray);
+            position: relative;
+        }
+
+        .toggle-btn.active {
+            background: white;
+            color: var(--deep-purple);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .toggle-btn.old-way.active {
+            color: var(--tan);
+        }
+
+        .toggle-btn.cercanos-way.active {
+            color: var(--orange);
+        }
+
+        .toggle-btn i {
+            margin-right: 8px;
+        }
+
+        /* Approach Content Container */
+        .approach-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 450px;
+        }
+
+        .approach-panel {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+            right: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .approach-panel.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            position: relative;
+        }
+
+        /* Statistic callout in approach section */
+        .approach-stat-callout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, rgba(222, 129, 48, 0.1), rgba(243, 191, 87, 0.08));
+            border-radius: 16px;
+            border-left: 4px solid var(--orange);
+        }
+
+        .approach-stat-callout .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--orange);
+            font-family: 'Quicksand', sans-serif;
+            line-height: 1;
+        }
+
+        .approach-stat-callout .stat-text {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 300px;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 600px) {
+            .approach-stat-callout {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+            .approach-stat-callout .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Old Way Panel */
+        .old-way-panel {
+            background: var(--bg-cream);
+            border-radius: 32px;
+            padding: 3rem;
+        }
+
+        .old-way-panel h3 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--brown);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .pain-points-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .pain-point {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--tan);
+            transition: transform 0.3s ease;
+        }
+
+        .pain-point:hover {
+            transform: translateX(5px);
+        }
+
+        .pain-point i {
+            color: var(--tan);
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .pain-point h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .pain-point p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Cercanos Way Panel */
+        .cercanos-way-panel {
+            background: linear-gradient(135deg, rgba(222, 129, 48, 0.08) 0%, rgba(243, 191, 87, 0.08) 100%);
+            border: 2px solid rgba(222, 129, 48, 0.15);
+            border-radius: 32px;
+            padding: 3rem;
+        }
+
+        .cercanos-way-panel h3 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .cercanos-way-panel > p {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .approach-item {
+            background: white;
+            border-radius: 16px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .approach-item:hover {
+            border-color: var(--orange);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .approach-item .item-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-orange);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .approach-item .item-icon i {
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .approach-item h5 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--deep-purple);
+            margin-bottom: 0.3rem;
+        }
+
+        .approach-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .metric-banner {
+            background: var(--deep-purple);
+            color: white;
+            text-align: center;
+            padding: 3rem 4%;
+            margin-top: 4rem;
+            border-radius: 24px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .metric-banner h3 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: clamp(1.4rem, 3vw, 1.75rem);
+            font-weight: 700;
+        }
+
+        .metric-banner span {
+            color: var(--gold);
+        }
+
+        .metric-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.875rem 2rem;
+            background: var(--olive-green);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .metric-cta:hover {
+            background: #8a8f4d;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(119, 123, 65, 0.4);
+        }
+
+        .metric-cta i {
+            transition: transform 0.3s ease;
+        }
+
+        .metric-cta:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Condition Tracks Section */
+        .tracks-section {
+            padding: 6rem 4%;
+            background: var(--bg-cream);
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--orange);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--deep-purple);
+        }
+
+        .section-subtitle {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+        }
+
+        .tracks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .track-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .track-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .track-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-orange);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .track-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .track-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .track-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(transparent, white);
+        }
+
+        .track-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .track-badge.eckm { color: var(--orange); }
+        .track-badge.ckd { color: var(--navy-blue); }
+        .track-badge.bh { color: var(--purple); }
+
+        .track-content {
+            padding: 1.5rem 2rem 2rem;
+        }
+
+        .track-content h3 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--deep-purple);
+        }
+
+        .track-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .track-conditions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .condition-tag {
+            background: var(--bg-cream);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        .track-cta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--olive-green);
+            font-weight: 600;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+
+        .track-cta:hover {
+            gap: 12px;
+        }
+
+        /* How It Works */
+        .how-section {
+            padding: 6rem 4%;
+            background: white;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 45px;
+            left: 12%;
+            right: 12%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--orange), var(--gold), var(--olive-green), var(--tan));
+            border-radius: 2px;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 90px;
+            height: 90px;
+            background: white;
+            border: 3px solid var(--orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--orange);
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .step-card:hover .step-number {
+            background: var(--orange);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .step-card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--deep-purple);
+        }
+
+        .step-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Stats Banner */
+        .stats-banner {
+            padding: 4rem 4%;
+            background: var(--olive-green);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stats-grid.stats-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-item h3 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .stat-item p {
+            font-size: 1rem;
+            color: white;
+            opacity: 0.95;
+        }
+
+        /* Stats Carousel - Continuous Scroll */
+        .stats-carousel-wrapper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .stats-carousel-track {
+            display: flex;
+            animation: scroll 25s linear infinite;
+            width: fit-content;
+        }
+
+        .stats-carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .stat-slide {
+            flex: 0 0 auto;
+            text-align: center;
+            padding: 1.5rem 3rem;
+            min-width: 200px;
+        }
+
+        .stat-slide h3 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 0.3rem;
+            color: white;
+        }
+
+        .stat-slide p {
+            font-size: 1rem;
+            color: white;
+            font-weight: 500;
+            opacity: 0.95;
+        }
+
+        @media (max-width: 768px) {
+            .stat-slide {
+                padding: 1rem 2rem;
+                min-width: 160px;
+            }
+            .stat-slide h3 {
+                font-size: 2.2rem;
+            }
+            .stat-slide p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Enrollment CTA */
+        .enroll-section {
+            padding: 8rem 4%;
+            text-align: center;
+            position: relative;
+            background: var(--bg-light);
+        }
+
+        .enroll-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(222, 129, 48, 0.08) 0%, transparent 60%);
+        }
+
+        .enroll-content {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .enroll-content h2 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--deep-purple);
+        }
+
+        .enroll-content p {
+            color: var(--text-gray);
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+        }
+
+        .enroll-form {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .enroll-input {
+            padding: 16px 24px;
+            border-radius: 30px;
+            border: 2px solid var(--blush);
+            background: white;
+            color: var(--text-dark);
+            font-size: 1rem;
+            width: 280px;
+            transition: border-color 0.3s ease;
+        }
+
+        .enroll-input:focus {
+            outline: none;
+            border-color: var(--orange);
+        }
+
+        .enroll-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--deep-purple);
+            color: white;
+            padding: 4rem 4% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand .logo-text {
+            color: white;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.7);
+            margin: 1rem 0;
+            max-width: 300px;
+        }
+
+        .logo-heart-footer {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+        }
+
+        .logo-heart-footer svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--orange);
+        }
+
+        .footer-column h4 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-column a {
+            display: block;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--orange);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        .footer-legal a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            margin-left: 2rem;
+        }
+
+        .footer-legal a:hover {
+            color: var(--orange);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-visual {
+                display: none;
+            }
+
+            .value-comparison {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .shift-arrow {
+                flex-direction: row;
+            }
+
+            .shift-arrow i {
+                transform: rotate(90deg);
+            }
+
+            .steps-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-container::before {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .tracks-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+
+            .approach-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .enroll-form {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .enroll-input {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .footer-legal {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .footer-legal a {
+                margin-left: 0;
+            }
+        }
+
+        /* Bilingual Content Toggle */
+        .content-en, .content-es {
+            transition: opacity 0.3s ease;
+        }
+
+        body.lang-es .content-en {
+            display: none;
+        }
+
+        body.lang-en .content-es {
+            display: none;
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        a:focus, button:focus, input:focus {
+            outline: 2px solid var(--orange);
+            outline-offset: 2px;
+        }
+
+        section[id] {
+            scroll-margin-top: 80px;
+        }
+    </style>
+</head>
+<body class="lang-en">
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="logo">
+            <span class="logo-text">cercanos</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="#approach">
+                <span class="content-en">Our Approach</span>
+                <span class="content-es">Nuestro Enfoque</span>
+            </a>
+            <a href="#team">
+                <span class="content-en">Your Care Team</span>
+                <span class="content-es">Tu Equipo de Cuidado</span>
+            </a>
+            <a href="#programs">
+                <span class="content-en">Programs</span>
+                <span class="content-es">Programas</span>
+            </a>
+            <a href="#enroll">
+                <span class="content-en">Enroll</span>
+                <span class="content-es">Inscríbete</span>
+            </a>
+
+            <div class="lang-toggle" role="group" aria-label="Language selection">
+                <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+                <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+            </div>
+
+            <a href="#enroll" class="cta-nav">
+                <span class="content-en">Get Started</span>
+                <span class="content-es">Comenzar</span>
+            </a>
+        </div>
+
+        <button class="mobile-menu-btn" aria-label="Open menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg-shapes" aria-hidden="true">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-shield-check"></i>
+                <span class="content-en">CMS ACCESS Participant</span>
+                <span class="content-es">Participante de CMS ACCESS</span>
+            </div>
+
+            <h1>
+                <span class="content-en">
+                    Feel Better. Live Longer. <span>We're Here to Help You Achieve Your Goals.</span>
+                </span>
+                <span class="content-es">
+                    Siéntete Mejor. Vive Más. <span>Estamos Aquí Para Ayudarte a Lograr Tus Metas.</span>
+                </span>
+            </h1>
+
+            <div class="hero-cta">
+                <a href="#enroll" class="btn-primary">
+                    <span class="content-en">Join Free</span>
+                    <span class="content-es">Únete Gratis</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#approach" class="btn-secondary">
+                    <i class="fas fa-play-circle"></i>
+                    <span class="content-en">See How It Works</span>
+                    <span class="content-es">Ver Cómo Funciona</span>
+                </a>
+            </div>
+
+            <!-- Horizontal Benefits Strip -->
+            <div class="hero-benefits">
+                <div class="benefit-item">
+                    <i class="fas fa-stethoscope"></i>
+                    <span class="content-en">Clinical Support</span>
+                    <span class="content-es">Apoyo Clínico</span>
+                    <div class="benefit-detail">
+                        <span class="content-en">A team helping you manage diabetes, heart health, mental health and more. No waiting rooms. No confusion.</span>
+                        <span class="content-es">Un equipo ayudándote a manejar diabetes, salud del corazón, salud mental y más. Sin salas de espera. Sin confusión.</span>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-hand-holding-dollar"></i>
+                    <span class="content-en">Zero Cost</span>
+                    <span class="content-es">Sin Costo</span>
+                    <div class="benefit-detail">
+                        <span class="content-en">A solution that works at no cost to you. Quality healthcare shouldn't break the bank.</span>
+                        <span class="content-es">Una solución que funciona sin costo para ti. El cuidado de calidad no debe ser costoso.</span>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-bullseye"></i>
+                    <span class="content-en">Personalized Plans</span>
+                    <span class="content-es">Planes Personalizados</span>
+                    <div class="benefit-detail">
+                        <span class="content-en">Interact with real people to help you achieve your goals and live better. Your plan, your pace.</span>
+                        <span class="content-es">Interactúa con personas reales que te ayudan a lograr tus metas y vivir mejor. Tu plan, tu ritmo.</span>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-comments"></i>
+                    <span class="content-en">English & Spanish</span>
+                    <span class="content-es">Inglés y Español</span>
+                    <div class="benefit-detail">
+                        <span class="content-en">A team that speaks your language, knows your culture, and actually has time for you.</span>
+                        <span class="content-es">Un equipo que habla tu idioma, conoce tu cultura, y realmente tiene tiempo para ti.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <img src="https://images.squarespace-cdn.com/content/v1/684ad6d46763217713452117/406b5359-4fd5-4142-a7e9-92d4d6678da1/img_wave.png" alt="" aria-hidden="true">
+    </div>
+
+    <!-- Our Approach Section - Redesigned for Seniors -->
+    <section class="value-section" id="approach">
+        <div class="value-header">
+            <h2>
+                <span class="content-en">Our Promise to You</span>
+                <span class="content-es">Nuestra Promesa Para Ti</span>
+            </h2>
+            <p>
+                <span class="content-en">Three simple commitments that guide everything we do.</span>
+                <span class="content-es">Tres compromisos simples que guían todo lo que hacemos.</span>
+            </p>
+        </div>
+
+        <!-- The 3 Promises -->
+        <div class="promises-section">
+            <div class="promises-grid">
+                <div class="promise-card">
+                    <div class="promise-number">1</div>
+                    <h3>
+                        <span class="content-en">We'll Help You Feel Better</span>
+                        <span class="content-es">Te Ayudaremos a Sentirte Mejor</span>
+                    </h3>
+                    <p>
+                        <span class="content-en">Real support that leads to real results. More energy, better numbers, and a healthier life.</span>
+                        <span class="content-es">Apoyo real que lleva a resultados reales. Más energía, mejores números y una vida más saludable.</span>
+                    </p>
+                </div>
+
+                <div class="promise-card">
+                    <div class="promise-number">2</div>
+                    <h3>
+                        <span class="content-en">We'll Never Charge You a Penny</span>
+                        <span class="content-es">Nunca Te Cobraremos un Centavo</span>
+                    </h3>
+                    <p>
+                        <span class="content-en">100% free for you. Covered by your Medicare plan. No hidden fees, no surprises, ever.</span>
+                        <span class="content-es">100% gratis para ti. Cubierto por tu plan de Medicare. Sin cargos ocultos, sin sorpresas, nunca.</span>
+                    </p>
+                </div>
+
+                <div class="promise-card">
+                    <div class="promise-number">3</div>
+                    <h3>
+                        <span class="content-en">An Experience You Will Enjoy</span>
+                        <span class="content-es">Una Experiencia Que Disfrutarás</span>
+                    </h3>
+                    <p>
+                        <span class="content-en">Someone always answers your call. In English or Spanish. No confusing voicemails or long waits.</span>
+                        <span class="content-es">Alguien siempre contesta tu llamada. En inglés o español. Sin buzones confusos ni largas esperas.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Your Care Team - Triangle Layout -->
+        <div class="care-team-section" id="team">
+            <div class="care-team-header">
+                <h3>
+                    <span class="content-en">Working Together for Your Health</span>
+                    <span class="content-es">Trabajando Juntos Por Tu Salud</span>
+                </h3>
+                <p>
+                    <span class="content-en">Your community doctor and our Cercanos team collaborate to give you the best care possible.</span>
+                    <span class="content-es">Tu doctor de la comunidad y nuestro equipo Cercanos colaboran para darte la mejor atención posible.</span>
+                </p>
+            </div>
+
+            <div class="care-team-wrapper">
+                <div class="care-triangle" id="careTriangle">
+                    <!-- SVG Connecting Arrows -->
+                    <svg class="triangle-arrows" id="triangleArrows">
+                        <defs>
+                            <marker id="arrowhead" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+                                <polygon points="0 0, 7 2.5, 0 5" fill="#777b41"/>
+                            </marker>
+                            <marker id="arrowhead-reverse" markerWidth="7" markerHeight="5" refX="1" refY="2.5" orient="auto">
+                                <polygon points="7 0, 0 2.5, 7 5" fill="#777b41"/>
+                            </marker>
+                        </defs>
+                        <!-- Curved arrows drawn by JavaScript -->
+                        <path id="path-pcp-you" fill="none" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <path id="path-you-cercanos" fill="none" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <path id="path-pcp-cercanos" fill="none" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                    </svg>
+
+                    <!-- Connection Labels -->
+                    <div class="connection-label" id="label-you-cercanos">
+                        <span class="content-en">Daily support</span>
+                        <span class="content-es">Apoyo diario</span>
+                    </div>
+                    <div class="connection-label" id="label-pcp-cercanos">
+                        <span class="content-en">Shared care plans</span>
+                        <span class="content-es">Planes compartidos</span>
+                    </div>
+
+                    <!-- Care Triangle Inner - holds the 3 main entities -->
+                    <div class="care-triangle-inner">
+                        <!-- Community PCP -->
+                        <div class="main-entity" id="pcpEntity">
+                            <div class="entity-card pcp">
+                                <div class="entity-icon">
+                                    <i class="fas fa-stethoscope"></i>
+                                </div>
+                                <h4>
+                                    <span class="content-en">Your Doctor</span>
+                                    <span class="content-es">Tu Doctor</span>
+                                </h4>
+                                <p>
+                                    <span class="content-en">Community PCP</span>
+                                    <span class="content-es">Doctor de Comunidad</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- YOU - Patient Center -->
+                        <div class="main-entity" id="youEntity">
+                            <div class="patient-center" id="patientCenter">
+                                <i class="fas fa-user"></i>
+                                <span>YOU</span>
+                            </div>
+                        </div>
+
+                        <!-- Cercanos Team Card -->
+                        <div class="main-entity" id="cercanosEntity">
+                            <div class="entity-card cercanos">
+                                <div class="entity-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h4>
+                                    <span class="content-en">Cercanos Team</span>
+                                    <span class="content-es">Equipo Cercanos</span>
+                                </h4>
+                                <p>
+                                    <span class="content-en">Your support system</span>
+                                    <span class="content-es">Tu sistema de apoyo</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Dropdown - Always visible below -->
+                    <div class="cercanos-team-dropdown">
+                        <div class="dropdown-header">
+                            <h5>
+                                <span class="content-en">Your Cercanos Care Team</span>
+                                <span class="content-es">Tu Equipo de Cuidado Cercanos</span>
+                            </h5>
+                        </div>
+
+                        <!-- Doctor Card - Top Row -->
+                        <div class="doctor-row">
+                            <div class="coach-flip-card doctor-card-top">
+                                <div class="coach-flip-inner">
+                                    <div class="coach-flip-front">
+                                        <div class="coach-avatar">
+                                            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=100&h=100&fit=crop&crop=face" alt="Doctor">
+                                        </div>
+                                        <div class="coach-info">
+                                            <h6><span class="content-en">Cercanos Doctor</span><span class="content-es">Doctor Cercanos</span></h6>
+                                            <span><span class="content-en">Medical oversight & care plan creation</span><span class="content-es">Supervisión médica y creación de plan de cuidado</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="coach-flip-back">
+                                        <div class="coach-info">
+                                            <h6><span class="content-en">How I Help</span><span class="content-es">Cómo Ayudo</span></h6>
+                                            <p><span class="content-en">I create your care plan and monitor your progress.</span><span class="content-es">Creo tu plan de cuidado y monitoreo tu progreso.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Support Team - Bottom Row -->
+                        <div class="coach-list coach-list-5">
+                            <!-- Care Coach -->
+                            <div class="coach-flip-card">
+                                <div class="coach-flip-inner">
+                                    <div class="coach-flip-front">
+                                        <div class="coach-avatar">
+                                            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=100&h=100&fit=crop&crop=face" alt="Care Coach">
+                                        </div>
+                                        <h6><span class="content-en">Care Coach</span><span class="content-es">Coach</span></h6>
+                                        <span><span class="content-en">Weekly check-ins</span><span class="content-es">Seguimiento</span></span>
+                                    </div>
+                                    <div class="coach-flip-back">
+                                        <h6><span class="content-en">How I Help</span><span class="content-es">Cómo Ayudo</span></h6>
+                                        <p><span class="content-en">I call you weekly to check your progress.</span><span class="content-es">Te llamo semanalmente.</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Nutrition -->
+                            <div class="coach-flip-card">
+                                <div class="coach-flip-inner">
+                                    <div class="coach-flip-front">
+                                        <div class="coach-avatar">
+                                            <img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=100&h=100&fit=crop&crop=face" alt="Nutrition">
+                                        </div>
+                                        <h6><span class="content-en">Nutrition</span><span class="content-es">Nutrición</span></h6>
+                                        <span><span class="content-en">Healthy eating</span><span class="content-es">Alimentación</span></span>
+                                    </div>
+                                    <div class="coach-flip-back">
+                                        <h6><span class="content-en">How I Help</span><span class="content-es">Cómo Ayudo</span></h6>
+                                        <p><span class="content-en">Meal plans for your taste.</span><span class="content-es">Planes para tu gusto.</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mental Health -->
+                            <div class="coach-flip-card">
+                                <div class="coach-flip-inner">
+                                    <div class="coach-flip-front">
+                                        <div class="coach-avatar">
+                                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=100&h=100&fit=crop&crop=face" alt="Mental Health">
+                                        </div>
+                                        <h6><span class="content-en">Mental Health</span><span class="content-es">Salud Mental</span></h6>
+                                        <span><span class="content-en">Emotional support</span><span class="content-es">Apoyo emocional</span></span>
+                                    </div>
+                                    <div class="coach-flip-back">
+                                        <h6><span class="content-en">How I Help</span><span class="content-es">Cómo Ayudo</span></h6>
+                                        <p><span class="content-en">Support for stress and emotions.</span><span class="content-es">Apoyo para el estrés.</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Medication -->
+                            <div class="coach-flip-card">
+                                <div class="coach-flip-inner">
+                                    <div class="coach-flip-front">
+                                        <div class="coach-avatar">
+                                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=100&h=100&fit=crop&crop=face" alt="Medication">
+                                        </div>
+                                        <h6><span class="content-en">Medication</span><span class="content-es">Medicinas</span></h6>
+                                        <span><span class="content-en">Medicine help</span><span class="content-es">Ayuda</span></span>
+                                    </div>
+                                    <div class="coach-flip-back">
+                                        <h6><span class="content-en">How I Help</span><span class="content-es">Cómo Ayudo</span></h6>
+                                        <p><span class="content-en">Understand your medications.</span><span class="content-es">Entiende tus medicinas.</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Community -->
+                            <div class="coach-flip-card">
+                                <div class="coach-flip-inner">
+                                    <div class="coach-flip-front">
+                                        <div class="coach-avatar">
+                                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&h=100&fit=crop&crop=face" alt="Community">
+                                        </div>
+                                        <h6><span class="content-en">Community</span><span class="content-es">Comunidad</span></h6>
+                                        <span><span class="content-en">Local resources</span><span class="content-es">Recursos</span></span>
+                                    </div>
+                                    <div class="coach-flip-back">
+                                        <h6><span class="content-en">How I Help</span><span class="content-es">Cómo Ayudo</span></h6>
+                                        <p><span class="content-en">Connect you with local programs.</span><span class="content-es">Te conecto con programas.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonial Carousel -->
+        <div class="testimonial-carousel">
+            <div class="testimonial-slides">
+                <!-- Testimonial 1 - Carmen (Hispanic) -->
+                <div class="testimonial-slide active">
+                    <blockquote>
+                        <span class="content-en">I used to dread dealing with my health. Now I have Rosa who calls me every week. She knows my name, she knows my family. It feels like having a friend who truly cares.</span>
+                        <span class="content-es">Antes me daba miedo lidiar con mi salud. Ahora tengo a Rosa que me llama cada semana. Conoce mi nombre, conoce a mi familia. Se siente como tener una amiga que realmente se preocupa.</span>
+                    </blockquote>
+                    <cite>
+                        <span class="content-en">— Carmen R., 68, Miami, FL</span>
+                        <span class="content-es">— Carmen R., 68, Miami, FL</span>
+                    </cite>
+                </div>
+
+                <!-- Testimonial 2 - Robert (American) -->
+                <div class="testimonial-slide">
+                    <blockquote>
+                        <span class="content-en">After my diabetes diagnosis, I felt lost. My coach helped me understand what to eat, how to check my levels, and actually got my A1C down. My doctor couldn't believe it.</span>
+                        <span class="content-es">Después de mi diagnóstico de diabetes, me sentía perdido. Mi coach me ayudó a entender qué comer, cómo revisar mis niveles, y logré bajar mi A1C. Mi doctor no lo podía creer.</span>
+                    </blockquote>
+                    <cite>
+                        <span class="content-en">— Robert T., 72, Houston, TX</span>
+                        <span class="content-es">— Robert T., 72, Houston, TX</span>
+                    </cite>
+                </div>
+
+                <!-- Testimonial 3 - Linda (American) -->
+                <div class="testimonial-slide">
+                    <blockquote>
+                        <span class="content-en">I was paying so much for programs that didn't work. Cercanos is free and I finally feel like someone is actually listening to me. They even helped me with my insurance paperwork.</span>
+                        <span class="content-es">Estaba pagando tanto por programas que no funcionaban. Cercanos es gratis y finalmente siento que alguien realmente me escucha. Hasta me ayudaron con el papeleo de mi seguro.</span>
+                    </blockquote>
+                    <cite>
+                        <span class="content-en">— Linda M., 65, Phoenix, AZ</span>
+                        <span class="content-es">— Linda M., 65, Phoenix, AZ</span>
+                    </cite>
+                </div>
+
+                <!-- Navigation Dots -->
+                <div class="testimonial-dots">
+                    <button class="testimonial-dot active" data-slide="0" aria-label="Testimonial 1"></button>
+                    <button class="testimonial-dot" data-slide="1" aria-label="Testimonial 2"></button>
+                    <button class="testimonial-dot" data-slide="2" aria-label="Testimonial 3"></button>
+                </div>
+            </div>
+
+            <a href="#enroll" class="testimonial-cta" style="display: block; text-align: center; margin-top: 1.5rem;">
+                <span class="content-en">Join Free Today</span>
+                <span class="content-es">Únete Gratis Hoy</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Thin Wave Divider -->
+    <div class="wave-divider-thin">
+        <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,20 Q360,40 720,20 T1440,20 L1440,40 L0,40 Z" fill="#de8130"/>
+        </svg>
+    </div>
+
+    <!-- Condition Tracks Section -->
+    <section class="tracks-section" id="programs">
+        <div class="section-header">
+            <div class="section-label">
+                <i class="fas fa-heartbeat"></i>
+                <span class="content-en">Our Programs</span>
+                <span class="content-es">Nuestros Programas</span>
+            </div>
+            <h2 class="section-title">
+                <span class="content-en">Choose Your Path to Better Health</span>
+                <span class="content-es">Elige Tu Camino a Mejor Salud</span>
+            </h2>
+            <p class="section-subtitle">
+                <span class="content-en">Specialized coaching programs designed for your unique health needs, with coaches who understand your journey.</span>
+                <span class="content-es">Programas de coaching especializados diseñados para tus necesidades únicas de salud, con coaches que entienden tu camino.</span>
+            </p>
+        </div>
+
+        <div class="tracks-grid">
+            <!-- eCKM Track - Early Cardio-Kidney-Metabolic -->
+            <article class="track-card" id="eckm">
+                <div class="track-image" style="background: linear-gradient(135deg, rgba(222, 129, 48, 0.15), rgba(243, 191, 87, 0.1)), url('https://images.unsplash.com/photo-1504439468489-c8920d796a29?w=600&q=80') center/cover;">
+                    <span class="track-badge eckm">
+                        <i class="fas fa-shield-heart"></i>
+                        <span class="content-en">PREVENTION</span>
+                        <span class="content-es">PREVENCIÓN</span>
+                    </span>
+                </div>
+                <div class="track-content">
+                    <h3>
+                        <span class="content-en">Early Cardio-Kidney-Metabolic (eCKM)</span>
+                        <span class="content-es">Cardio-Renal-Metabólico Temprano (eCKM)</span>
+                    </h3>
+                    <p>
+                        <span class="content-en">Catch conditions early and prevent progression. Our prevention program helps you manage risk factors before they become serious health issues.</span>
+                        <span class="content-es">Detecta condiciones temprano y previene la progresión. Nuestro programa de prevención te ayuda a manejar factores de riesgo antes de que se conviertan en problemas serios.</span>
+                    </p>
+                    <div class="track-conditions">
+                        <span class="condition-tag content-en">Hypertension</span>
+                        <span class="condition-tag content-es">Hipertensión</span>
+                        <span class="condition-tag content-en">Dyslipidemia</span>
+                        <span class="condition-tag content-es">Dislipidemia</span>
+                        <span class="condition-tag content-en">Obesity</span>
+                        <span class="condition-tag content-es">Obesidad</span>
+                        <span class="condition-tag">Prediabetes</span>
+                    </div>
+                    <a href="#enroll" class="track-cta">
+                        <span class="content-en">Start Prevention</span>
+                        <span class="content-es">Comienza Prevención</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- CKM Track - Cardio-Kidney-Metabolic -->
+            <article class="track-card" id="ckm">
+                <div class="track-image" style="background: linear-gradient(135deg, rgba(47, 96, 137, 0.2), rgba(101, 40, 117, 0.1)), url('https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=600&q=80') center/cover;">
+                    <span class="track-badge ckd">
+                        <i class="fas fa-heart-pulse"></i>
+                        <span class="content-en">COMPREHENSIVE CARE</span>
+                        <span class="content-es">CUIDADO INTEGRAL</span>
+                    </span>
+                </div>
+                <div class="track-content">
+                    <h3>
+                        <span class="content-en">Cardio-Kidney-Metabolic (CKM)</span>
+                        <span class="content-es">Cardio-Renal-Metabólico (CKM)</span>
+                    </h3>
+                    <p>
+                        <span class="content-en">Expert management for diabetes, kidney disease, and heart conditions. Our team coordinates your care to protect your heart, kidneys, and overall health.</span>
+                        <span class="content-es">Manejo experto para diabetes, enfermedad renal y condiciones cardíacas. Nuestro equipo coordina tu cuidado para proteger tu corazón, riñones y salud general.</span>
+                    </p>
+                    <div class="track-conditions">
+                        <span class="condition-tag">Diabetes</span>
+                        <span class="condition-tag content-en">CKD (Stage 3a/3b)</span>
+                        <span class="condition-tag content-es">ERC (Etapa 3a/3b)</span>
+                        <span class="condition-tag content-en">Heart Disease</span>
+                        <span class="condition-tag content-es">Enfermedad Cardíaca</span>
+                    </div>
+                    <a href="#enroll" class="track-cta">
+                        <span class="content-en">Get Expert Care</span>
+                        <span class="content-es">Obtén Cuidado Experto</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Behavioral Health Track -->
+            <article class="track-card" id="bh">
+                <div class="track-image" style="background: linear-gradient(135deg, rgba(101, 40, 117, 0.2), rgba(45, 22, 40, 0.1)), url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&q=80') center/cover;">
+                    <span class="track-badge bh">
+                        <i class="fas fa-brain"></i>
+                        <span class="content-en">BEHAVIORAL HEALTH</span>
+                        <span class="content-es">SALUD CONDUCTUAL</span>
+                    </span>
+                </div>
+                <div class="track-content">
+                    <h3>
+                        <span class="content-en">Behavioral Health (BH)</span>
+                        <span class="content-es">Salud Conductual (BH)</span>
+                    </h3>
+                    <p>
+                        <span class="content-en">Compassionate support for depression and anxiety with culturally sensitive care. Our behavioral health specialists understand your journey and are here to help.</span>
+                        <span class="content-es">Apoyo compasivo para depresión y ansiedad con cuidado culturalmente sensible. Nuestros especialistas en salud conductual entienden tu camino y están aquí para ayudarte.</span>
+                    </p>
+                    <div class="track-conditions">
+                        <span class="condition-tag content-en">Depression</span>
+                        <span class="condition-tag content-es">Depresión</span>
+                        <span class="condition-tag content-en">Anxiety</span>
+                        <span class="condition-tag content-es">Ansiedad</span>
+                    </div>
+                    <a href="#enroll" class="track-cta">
+                        <span class="content-en">Start Healing</span>
+                        <span class="content-es">Comienza a Sanar</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Thin Wave Divider -->
+    <div class="wave-divider-thin">
+        <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,20 Q360,40 720,20 T1440,20 L1440,40 L0,40 Z" fill="#de8130"/>
+        </svg>
+    </div>
+
+    <!-- How It Works -->
+    <section class="how-section" id="how-it-works">
+        <div class="section-header">
+            <div class="section-label">
+                <i class="fas fa-users"></i>
+                <span class="content-en">Meet Your Team</span>
+                <span class="content-es">Conoce a Tu Equipo</span>
+            </div>
+            <h2 class="section-title">
+                <span class="content-en">Connect with your care team who speaks your language</span>
+                <span class="content-es">Conéctate con tu equipo de cuidado que habla tu idioma</span>
+            </h2>
+            <p class="section-subtitle">
+                <span class="content-en">From enrollment to ongoing support, we're with you every step of the way.</span>
+                <span class="content-es">Desde la inscripción hasta el apoyo continuo, estamos contigo en cada paso del camino.</span>
+            </p>
+        </div>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h4>
+                    <span class="content-en">Enroll Online</span>
+                    <span class="content-es">Inscríbete en Línea</span>
+                </h4>
+                <p>
+                    <span class="content-en">Complete a simple form and verify your eligibility in minutes.</span>
+                    <span class="content-es">Completa un formulario simple y verifica tu elegibilidad en minutos.</span>
+                </p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h4>
+                    <span class="content-en">Meet Your Team</span>
+                    <span class="content-es">Conoce a Tu Equipo</span>
+                </h4>
+                <p>
+                    <span class="content-en">Connect with your care team who speaks your language.</span>
+                    <span class="content-es">Conéctate con tu equipo de cuidado que habla tu idioma.</span>
+                </p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h4>
+                    <span class="content-en">Get Your Plan</span>
+                    <span class="content-es">Recibe Tu Plan</span>
+                </h4>
+                <p>
+                    <span class="content-en">Receive a personalized plan based on your health goals and needs.</span>
+                    <span class="content-es">Recibe un plan personalizado basado en tus metas y necesidades de salud.</span>
+                </p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h4>
+                    <span class="content-en">Start Thriving</span>
+                    <span class="content-es">Empieza a Prosperar</span>
+                </h4>
+                <p>
+                    <span class="content-en">Access virtual coaching, education, and 24/7 support on your path to better health.</span>
+                    <span class="content-es">Accede a coaching virtual, educación y apoyo 24/7 en tu camino a mejor salud.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Thin Wave Divider -->
+    <div class="wave-divider-thin">
+        <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,20 Q360,40 720,20 T1440,20 L1440,40 L0,40 Z" fill="#777b41"/>
+        </svg>
+    </div>
+
+    <!-- Stats Banner - Scrolling Carousel -->
+    <section class="stats-banner" aria-label="Program benefits">
+        <div class="stats-carousel-wrapper">
+            <div class="stats-carousel-track" id="statsCarousel">
+                <!-- First set -->
+                <div class="stat-slide">
+                    <h3>$0</h3>
+                    <p>
+                        <span class="content-en">Cost to You</span>
+                        <span class="content-es">Costo Para Ti</span>
+                    </p>
+                </div>
+                <div class="stat-slide">
+                    <h3>75%+</h3>
+                    <p>
+                        <span class="content-en">Diabetes A1C Control</span>
+                        <span class="content-es">Control de A1C en Diabetes</span>
+                    </p>
+                </div>
+                <div class="stat-slide">
+                    <h3>✓</h3>
+                    <p>
+                        <span class="content-en">Real People, Real Support</span>
+                        <span class="content-es">Personas Reales, Apoyo Real</span>
+                    </p>
+                </div>
+                <div class="stat-slide">
+                    <h3>75%</h3>
+                    <p>
+                        <span class="content-en">Blood Pressure Control</span>
+                        <span class="content-es">Control de Presión Arterial</span>
+                    </p>
+                </div>
+                <div class="stat-slide">
+                    <h3>✓</h3>
+                    <p>
+                        <span class="content-en">Personalized Just for You</span>
+                        <span class="content-es">Personalizado Solo Para Ti</span>
+                    </p>
+                </div>
+                <div class="stat-slide">
+                    <h3>100%</h3>
+                    <p>
+                        <span class="content-en">Bilingual Team</span>
+                        <span class="content-es">Equipo Bilingüe</span>
+                    </p>
+                </div>
+                <div class="stat-slide">
+                    <h3>✓</h3>
+                    <p>
+                        <span class="content-en">Weekly Check-ins</span>
+                        <span class="content-es">Llamadas Semanales</span>
+                    </p>
+                </div>
+                <!-- Duplicate set for seamless loop -->
+                <div class="stat-slide">
+                    <h3>$0</h3>
+                    <p>
+                        <span class="content-en">Cost to You</span>
+                        <span class="content-es">Costo Para Ti</span>
+                    </p>
+                </div>
+                <div class="stat-slide">
+                    <h3>75%+</h3>
+                    <p>
+                        <span class="content-en">Diabetes A1C Control</span>
+                        <span class="content-es">Control de A1C en Diabetes</span>
+                    </p>
+                </div>
+                <div class="stat-slide">
+                    <h3>✓</h3>
+                    <p>
+                        <span class="content-en">Real People, Real Support</span>
+                        <span class="content-es">Personas Reales, Apoyo Real</span>
+                    </p>
+                </div>
+                <div class="stat-slide">
+                    <h3>75%</h3>
+                    <p>
+                        <span class="content-en">Blood Pressure Control</span>
+                        <span class="content-es">Control de Presión Arterial</span>
+                    </p>
+                </div>
+                <div class="stat-slide">
+                    <h3>✓</h3>
+                    <p>
+                        <span class="content-en">Personalized Just for You</span>
+                        <span class="content-es">Personalizado Solo Para Ti</span>
+                    </p>
+                </div>
+                <div class="stat-slide">
+                    <h3>100%</h3>
+                    <p>
+                        <span class="content-en">Bilingual Team</span>
+                        <span class="content-es">Equipo Bilingüe</span>
+                    </p>
+                </div>
+                <div class="stat-slide">
+                    <h3>✓</h3>
+                    <p>
+                        <span class="content-en">Weekly Check-ins</span>
+                        <span class="content-es">Llamadas Semanales</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Thin Wave Divider -->
+    <div class="wave-divider-thin">
+        <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,20 Q360,40 720,20 T1440,20 L1440,40 L0,40 Z" fill="#777b41"/>
+        </svg>
+    </div>
+
+    <!-- Enrollment CTA -->
+    <section class="enroll-section" id="enroll">
+        <div class="enroll-content">
+            <h2>
+                <span class="content-en">Ready to Transform Your Health?</span>
+                <span class="content-es">¿Listo para Transformar Tu Salud?</span>
+            </h2>
+            <p>
+                <span class="content-en">Join thousands of people who have taken control of their chronic conditions with personalized, culturally connected coaching. Start your journey today.</span>
+                <span class="content-es">Únete a miles de personas que han tomado control de sus condiciones crónicas con coaching personalizado y culturalmente conectado. Comienza tu camino hoy.</span>
+            </p>
+
+            <form class="enroll-form" action="#" method="post">
+                <input type="text" class="enroll-input" placeholder="Full Name / Nombre Completo" required aria-label="Full name">
+                <input type="tel" class="enroll-input" placeholder="Phone / Teléfono" required aria-label="Phone number">
+                <input type="email" class="enroll-input" placeholder="Email / Correo Electrónico" required aria-label="Email address">
+                <button type="submit" class="btn-primary">
+                    <span class="content-en">Start My Journey</span>
+                    <span class="content-es">Comenzar Mi Camino</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                <i class="fas fa-shield-check" style="color: var(--olive-green); margin-right: 8px;"></i>
+                <span class="content-en">Your information is secure and protected under HIPAA</span>
+                <span class="content-es">Tu información está segura y protegida bajo HIPAA</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">
+                    <div class="logo-heart-footer">
+                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M85 35c0 30-35 55-35 55S15 65 15 35c0-20 15-30 35-15c20-15 35-5 35 15z" fill="#f3bf57"/>
+                            <path d="M78 38c0 25-28 45-28 45S22 63 22 38c0-17 12-25 28-12c16-13 28-5 28 12z" fill="#de8130"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">cercanos</span>
+                </div>
+                <p>
+                    <span class="content-en">Connecting care & community.</span>
+                    <span class="content-es">Conectando cuidado y comunidad.</span>
+                </p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>
+                    <span class="content-en">Programs</span>
+                    <span class="content-es">Programas</span>
+                </h4>
+                <a href="#eckm">
+                    <span class="content-en">Early Cardio-Kidney-Metabolic</span>
+                    <span class="content-es">Cardio-Renal-Metabólico Temprano</span>
+                </a>
+                <a href="#ckm">
+                    <span class="content-en">Cardio-Kidney-Metabolic</span>
+                    <span class="content-es">Cardio-Renal-Metabólico</span>
+                </a>
+                <a href="#bh">
+                    <span class="content-en">Behavioral Health</span>
+                    <span class="content-es">Salud Conductual</span>
+                </a>
+            </div>
+
+            <div class="footer-column">
+                <h4>
+                    <span class="content-en">Resources</span>
+                    <span class="content-es">Recursos</span>
+                </h4>
+                <a href="#">
+                    <span class="content-en">Patient Education</span>
+                    <span class="content-es">Educación del Paciente</span>
+                </a>
+                <a href="#">
+                    <span class="content-en">FAQ</span>
+                    <span class="content-es">Preguntas Frecuentes</span>
+                </a>
+                <a href="#">Blog</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>
+                    <span class="content-en">Contact</span>
+                    <span class="content-es">Contacto</span>
+                </h4>
+                <a href="tel:305-831-2358">305-831-2358</a>
+                <a href="mailto:access@cercanoscare.com">access@cercanoscare.com</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Cercanos Care. <span class="content-en">All rights reserved.</span><span class="content-es">Todos los derechos reservados.</span></p>
+            <div class="footer-legal">
+                <a href="#">
+                    <span class="content-en">Privacy Policy</span>
+                    <span class="content-es">Política de Privacidad</span>
+                </a>
+                <a href="#">
+                    <span class="content-en">Terms of Service</span>
+                    <span class="content-es">Términos de Servicio</span>
+                </a>
+                <a href="#">HIPAA Notice</a>
+                <a href="#">
+                    <span class="content-en">Accessibility</span>
+                    <span class="content-es">Accesibilidad</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Toggle
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const body = document.body;
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.dataset.lang;
+
+                langBtns.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-pressed', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-pressed', 'true');
+
+                body.classList.remove('lang-en', 'lang-es');
+                body.classList.add(`lang-${lang}`);
+
+                document.documentElement.lang = lang;
+                localStorage.setItem('cercanos-lang', lang);
+            });
+        });
+
+        const storedLang = localStorage.getItem('cercanos-lang');
+        if (storedLang) {
+            const storedBtn = document.querySelector(`[data-lang="${storedLang}"]`);
+            if (storedBtn) storedBtn.click();
+        }
+
+        // Testimonial Carousel
+        const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+        const testimonialDots = document.querySelectorAll('.testimonial-dot');
+        let currentSlide = 0;
+        let autoSlideInterval;
+
+        function showSlide(index) {
+            // Handle wrap-around
+            if (index >= testimonialSlides.length) index = 0;
+            if (index < 0) index = testimonialSlides.length - 1;
+            currentSlide = index;
+
+            // Update slides
+            testimonialSlides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) slide.classList.add('active');
+            });
+
+            // Update dots
+            testimonialDots.forEach((dot, i) => {
+                dot.classList.remove('active');
+                if (i === index) dot.classList.add('active');
+            });
+        }
+
+        // Dot click handlers
+        testimonialDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+                resetAutoSlide();
+            });
+        });
+
+        // Auto-advance every 6 seconds
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 6000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+        // Start auto-slide
+        startAutoSlide();
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.track-card, .step-card, .approach-item, .pain-point, .team-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Form submission handling
+        const enrollForm = document.querySelector('.enroll-form');
+        if (enrollForm) {
+            enrollForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const isSpanish = body.classList.contains('lang-es');
+                alert(isSpanish
+                    ? '¡Gracias por tu interés! Un coach te contactará pronto.'
+                    : 'Thank you for your interest! A coach will contact you soon.');
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+        }
+
+        // Draw curved arrows for care triangle
+        function drawCareLines() {
+            const careTriangle = document.getElementById('careTriangle');
+            const svg = document.getElementById('triangleArrows');
+            const pcpEntity = document.getElementById('pcpEntity');
+            const youEntity = document.getElementById('youEntity');
+            const cercanosEntity = document.getElementById('cercanosEntity');
+
+            if (!careTriangle || !svg || !pcpEntity || !youEntity || !cercanosEntity) return;
+
+            // Get positions relative to care-triangle
+            const triangleRect = careTriangle.getBoundingClientRect();
+            const pcpRect = pcpEntity.querySelector('.entity-card').getBoundingClientRect();
+            const youRect = youEntity.querySelector('.patient-center').getBoundingClientRect();
+            const cercanosRect = cercanosEntity.querySelector('.entity-card').getBoundingClientRect();
+
+            // Calculate edge points relative to care-triangle
+            // PCP box edges
+            const pcpRight = pcpRect.right - triangleRect.left;
+            const pcpTop = pcpRect.top - triangleRect.top;
+            const pcpCenterY = pcpRect.top + pcpRect.height / 2 - triangleRect.top;
+            const pcpCenterX = pcpRect.left + pcpRect.width / 2 - triangleRect.left;
+
+            // YOU circle edges
+            const youLeft = youRect.left - triangleRect.left;
+            const youRight = youRect.right - triangleRect.left;
+            const youTop = youRect.top - triangleRect.top;
+            const youCenterY = youRect.top + youRect.height / 2 - triangleRect.top;
+            const youCenterX = youRect.left + youRect.width / 2 - triangleRect.left;
+
+            // Cercanos box edges
+            const cercanosLeft = cercanosRect.left - triangleRect.left;
+            const cercanosTop = cercanosRect.top - triangleRect.top;
+            const cercanosCenterY = cercanosRect.top + cercanosRect.height / 2 - triangleRect.top;
+            const cercanosCenterX = cercanosRect.left + cercanosRect.width / 2 - triangleRect.left;
+
+            // Update SVG size
+            svg.style.width = triangleRect.width + 'px';
+            svg.style.height = triangleRect.height + 'px';
+
+            // Get path elements
+            const pathPcpYou = document.getElementById('path-pcp-you');
+            const pathYouCercanos = document.getElementById('path-you-cercanos');
+            const pathPcpCercanos = document.getElementById('path-pcp-cercanos');
+
+            // Draw curved paths - arrows stop at box edges
+            // PCP to YOU - from right edge of PCP to left edge of YOU
+            if (pathPcpYou) {
+                const midX = (pcpRight + youLeft) / 2;
+                const midY = (pcpCenterY + youCenterY) / 2 + 35;
+                pathPcpYou.setAttribute('d', `M ${pcpRight} ${pcpCenterY} Q ${midX} ${midY} ${youLeft} ${youCenterY}`);
+            }
+
+            // YOU to Cercanos - from right edge of YOU to left edge of Cercanos
+            if (pathYouCercanos) {
+                const midX = (youRight + cercanosLeft) / 2;
+                const midY = (youCenterY + cercanosCenterY) / 2 + 35;
+                pathYouCercanos.setAttribute('d', `M ${youRight} ${youCenterY} Q ${midX} ${midY} ${cercanosLeft} ${cercanosCenterY}`);
+            }
+
+            // PCP to Cercanos - curves upward from top edges
+            if (pathPcpCercanos) {
+                const midX = (pcpCenterX + cercanosCenterX) / 2;
+                const midY = Math.min(pcpTop, cercanosTop) - 80;
+                pathPcpCercanos.setAttribute('d', `M ${pcpCenterX} ${pcpTop} Q ${midX} ${midY} ${cercanosCenterX} ${cercanosTop}`);
+            }
+
+            // Position labels
+            const labelPcpYou = document.getElementById('label-pcp-you');
+            const labelYouCercanos = document.getElementById('label-you-cercanos');
+            const labelPcpCercanos = document.getElementById('label-pcp-cercanos');
+
+            if (labelPcpYou) {
+                labelPcpYou.style.left = ((pcpRight + youLeft) / 2) + 'px';
+                labelPcpYou.style.top = ((pcpCenterY + youCenterY) / 2 + 45) + 'px';
+                labelPcpYou.style.transform = 'translateX(-50%)';
+            }
+
+            if (labelYouCercanos) {
+                labelYouCercanos.style.left = ((youRight + cercanosLeft) / 2) + 'px';
+                labelYouCercanos.style.top = ((youCenterY + cercanosCenterY) / 2 + 45) + 'px';
+                labelYouCercanos.style.transform = 'translateX(-50%)';
+            }
+
+            if (labelPcpCercanos) {
+                labelPcpCercanos.style.left = ((pcpCenterX + cercanosCenterX) / 2) + 'px';
+                labelPcpCercanos.style.top = (Math.min(pcpTop, cercanosTop) - 95) + 'px';
+                labelPcpCercanos.style.transform = 'translateX(-50%)';
+            }
+        }
+
+        // Draw lines on load and resize
+        window.addEventListener('load', drawCareLines);
+        window.addEventListener('resize', drawCareLines);
+        setTimeout(drawCareLines, 100);
+    </script>
+
+</body>
+</html>
