@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cercanos Care + Itera Health | Your Care Management App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --orange: #de8130;
+      --tan: #a47864;
+      --deep-purple: #2d1628;
+      --blush: #e6d9d3;
+      --brown: #5a4b44;
+      --olive: #777b41;
+      --gold: #f3bf57;
+      --navy: #2f6089;
+      --purple: #652875;
+      --white: #ffffff;
+      --off-white: #faf7f5;
+      --light-warm: #f5efe9;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--brown);
+      background: var(--off-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(45, 22, 40, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 0.9rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .nav-brand img.nav-heart {
+      width: 36px;
+      height: auto;
+    }
+    .nav-brand img.nav-logo {
+      width: 140px;
+      height: auto;
+    }
+    nav a {
+      color: var(--blush);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-cta {
+      background: var(--orange);
+      color: var(--white) !important;
+      padding: 0.5rem 1.3rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: #c5702a; transform: translateY(-1px); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(165deg, var(--deep-purple) 0%, #3d1f38 40%, #4a2548 100%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -15%;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(222,129,48,0.15) 0%, transparent 70%);
+      animation: pulse-glow 6s ease-in-out infinite;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(101,40,117,0.2) 0%, transparent 70%);
+      animation: pulse-glow 8s ease-in-out infinite reverse;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.15); opacity: 1; }
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-text { animation: fade-up 1s ease-out; }
+    .hero-brand-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-logo {
+      width: 200px;
+      height: auto;
+      filter: brightness(1.3);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(222,129,48,0.15);
+      border: 1px solid rgba(222,129,48,0.3);
+      color: var(--gold);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--blush);
+      max-width: 480px;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .store-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      padding: 0.7rem 1.4rem;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .store-btn:hover {
+      background: rgba(255,255,255,0.15);
+      border-color: var(--orange);
+      transform: translateY(-2px);
+    }
+    .store-btn svg { width: 28px; height: 28px; flex-shrink: 0; }
+    .store-btn-text { text-align: left; line-height: 1.2; }
+    .store-btn-text small { font-size: 0.65rem; opacity: 0.7; display: block; }
+    .store-btn-text strong { font-size: 0.95rem; }
+
+    /* Phone mockup */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.2rem;
+      animation: fade-up 1s ease-out 0.3s both;
+    }
+    .phone-mockup {
+      width: 260px;
+      height: 540px;
+      background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+      border-radius: 44px;
+      border: 3px solid rgba(255,255,255,0.15);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+    }
+    .phone-notch {
+      width: 100px;
+      height: 24px;
+      background: #000;
+      border-radius: 0 0 14px 14px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+    }
+    .phone-screen {
+      position: absolute;
+      inset: 6px;
+      border-radius: 40px;
+      overflow: hidden;
+      background: #f5f5f5;
+    }
+    /* Itera app UI */
+    .app-status-bar {
+      background: #fff;
+      padding: 2.2rem 1rem 0.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: #222;
+    }
+    .app-greeting {
+      padding: 0.4rem 1rem 0.5rem;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .app-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #e74c6f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.55rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .app-greeting-text small { font-size: 0.5rem; color: #888; display: block; }
+    .app-greeting-text strong { font-size: 0.7rem; color: #222; }
+    .app-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      padding: 0.5rem 0.6rem;
+      flex: 1;
+    }
+    .app-tile {
+      border-radius: 14px;
+      padding: 1.2rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      aspect-ratio: 1 / 0.85;
+    }
+    .app-tile svg { width: 26px; height: 26px; }
+    .app-tile span { font-size: 0.58rem; font-weight: 600; }
+    .tile-gray { background: #eef0f2; }
+    .tile-green { background: #e8f5ee; }
+    .tile-teal { background: #e4eff2; }
+    .tile-pink { background: #fce8e8; }
+    .tile-lavender { background: #f0e8f5; }
+    .tile-gray span { color: #6b7280; }
+    .tile-green span { color: #16a34a; }
+    .tile-teal span { color: #0f766e; }
+    .tile-pink span { color: #e64d2e; }
+    .tile-lavender span { color: #7c3aed; }
+    .phone-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-top: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      padding: 0.4rem 0.3rem 0.8rem;
+    }
+    .phone-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15rem;
+      position: relative;
+    }
+    .phone-nav-item svg { width: 18px; height: 18px; }
+    .phone-nav-item span { font-size: 0.45rem; color: #9ca3af; }
+    .phone-nav-item.active svg { color: #3b82f6; }
+    .phone-nav-item.active span { color: #3b82f6; font-weight: 600; }
+    .phone-nav-badge {
+      position: absolute;
+      top: -4px;
+      right: -6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ef4444;
+      color: #fff;
+      font-size: 0.35rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .phone-nav-center {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #bfdbfe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.4rem;
+    }
+    .phone-nav-center svg { width: 16px; height: 16px; color: #3b82f6; }
+
+    /* Second phone: Records / Vitals screen */
+    .phone-mockup.phone-2 { margin-top: 0; }
+    .app-header-bar {
+      background: #fff;
+      padding: 2.2rem 0.8rem 0.4rem;
+      text-align: center;
+      position: relative;
+    }
+    .app-header-bar h3 { font-size: 0.8rem; font-weight: 600; color: #222; }
+    .app-header-bar .bell-wrap {
+      position: absolute;
+      right: 0.8rem;
+      top: 2.2rem;
+    }
+    .app-tabs {
+      display: flex;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 0 0.3rem;
+    }
+    .app-tab {
+      flex: 1;
+      text-align: center;
+      padding: 0.35rem 0.1rem;
+      font-size: 0.4rem;
+      font-weight: 500;
+      color: #888;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15rem;
+    }
+    .app-tab svg { width: 14px; height: 14px; }
+    .app-tab.active-tab { color: #0f766e; border-bottom: 2px solid #0f766e; }
+    .app-sub-tabs {
+      display: flex;
+      background: #fff;
+      padding: 0.3rem 0.5rem;
+      gap: 0.8rem;
+      border-bottom: 1px solid #eee;
+    }
+    .app-sub-tab {
+      font-size: 0.42rem;
+      font-weight: 500;
+      color: #aaa;
+      padding-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+    .app-sub-tab svg { width: 10px; height: 10px; }
+    .app-sub-tab.active-sub { color: #222; font-weight: 600; border-bottom: 2px solid #2563eb; }
+    .vitals-list {
+      padding: 0.3rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      overflow: hidden;
+    }
+    .vital-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #f5f5f5;
+      border-radius: 12px;
+      padding: 0.55rem 0.6rem;
+    }
+    .vital-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .vital-icon svg { width: 14px; height: 14px; }
+    .vital-icon.vi-red { background: #ef4444; }
+    .vital-icon.vi-teal { background: #0d9488; }
+    .vital-icon.vi-orange { background: #f59e0b; }
+    .vital-icon.vi-blue { background: #93c5fd; }
+    .vital-row span { font-size: 0.55rem; font-weight: 500; color: #333; }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SECTION SHARED ─── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--deep-purple);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--tan);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    /* ─── FEATURES ─── */
+    .features { background: var(--white); }
+    .features-header { text-align: center; margin-bottom: 3.5rem; }
+    .features-header .section-subtitle { margin: 0 auto; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .feature-card {
+      padding: 2rem;
+      border-radius: 20px;
+      background: var(--off-white);
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange), var(--gold));
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    .feature-card:hover::before { opacity: 1; }
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      background: rgba(222,129,48,0.08);
+      overflow: hidden;
+    }
+    .feature-icon svg { width: 30px; height: 30px; }
+    .feature-icon img { width: 54px; height: auto; object-fit: contain; }
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--deep-purple);
+      margin-bottom: 0.5rem;
+    }
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--brown);
+      line-height: 1.65;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how-it-works { background: var(--off-white); }
+    .how-header { text-align: center; margin-bottom: 3rem; }
+    .how-header .section-subtitle { margin: 0 auto; }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 12%;
+      right: 12%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--orange), var(--gold), var(--olive), var(--navy));
+      border-radius: 2px;
+    }
+    .step {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--orange);
+      margin: 0 auto 1rem;
+      box-shadow: 0 4px 15px rgba(222,129,48,0.15);
+    }
+    .step h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--deep-purple);
+      margin-bottom: 0.4rem;
+    }
+    .step p { font-size: 0.85rem; color: var(--tan); line-height: 1.6; }
+
+    /* ─── BENEFITS ─── */
+    .benefits {
+      background: linear-gradient(165deg, var(--deep-purple) 0%, #3d1f38 100%);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .benefits::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(222,129,48,0.1) 0%, transparent 70%);
+    }
+    .benefits .section-label { color: var(--gold); }
+    .benefits .section-title { color: var(--white); }
+    .benefits .section-subtitle { color: var(--blush); }
+    .benefits-header { margin-bottom: 3rem; }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .benefit-card {
+      display: flex;
+      gap: 1.2rem;
+      padding: 1.5rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.3s;
+    }
+    .benefit-card:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+    .benefit-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .benefit-icon svg { width: 24px; height: 24px; color: var(--orange); }
+    .benefit-icon img { width: 48px; height: auto; object-fit: contain; }
+    .benefit-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .benefit-card p {
+      font-size: 0.85rem;
+      color: var(--blush);
+      line-height: 1.6;
+    }
+
+    /* ─── CTA / DOWNLOAD ─── */
+    .download-cta {
+      background: var(--white);
+      text-align: center;
+    }
+    .download-cta .section-title { margin-bottom: 0.5rem; }
+    .download-cta .section-subtitle {
+      margin: 0 auto 2.5rem;
+      max-width: 520px;
+    }
+    .cta-stores {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .cta-store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: var(--deep-purple);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(45,22,40,0.2);
+    }
+    .cta-store-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(45,22,40,0.3);
+    }
+    .cta-store-btn svg { width: 30px; height: 30px; }
+    .cta-store-btn .store-btn-text { text-align: left; line-height: 1.2; }
+    .cta-store-btn .store-btn-text small { font-size: 0.65rem; opacity: 0.7; display: block; }
+    .cta-store-btn .store-btn-text strong { font-size: 1rem; }
+    .cta-note {
+      font-size: 0.8rem;
+      color: var(--tan);
+      margin-top: 1rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--deep-purple);
+      color: var(--blush);
+      padding: 3rem 2rem 1.5rem;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .footer-brand span {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: var(--olive);
+    }
+    .footer-brand p {
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+      color: var(--tan);
+    }
+    .footer-links { display: flex; gap: 3rem; }
+    .footer-col h5 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--orange);
+      margin-bottom: 0.8rem;
+    }
+    .footer-col a {
+      display: block;
+      color: var(--blush);
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--orange); }
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 2rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p { font-size: 0.75rem; color: var(--tan); }
+    .footer-gradient {
+      height: 4px;
+      background: linear-gradient(90deg, var(--orange), var(--gold), var(--olive), var(--deep-purple));
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; padding-top: 6rem; gap: 2rem; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .store-buttons { justify-content: center; }
+      .hero-brand-row { justify-content: center; }
+      .hero-visual { order: -1; }
+      .phone-mockup { width: 170px; height: 352px; }
+      .phone-mockup.phone-2 { margin-top: 0; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .steps::before { display: none; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      section { padding: 3.5rem 1.5rem; }
+      .section-title { font-size: 1.8rem; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0.7rem 1rem; }
+      .nav-links { display: none; }
+      .nav-brand img.nav-logo { width: 110px; }
+      .nav-brand img.nav-heart { width: 28px; }
+      .hero-inner { padding: 5.5rem 1.2rem 2.5rem; gap: 1.5rem; }
+      .hero-brand-row { gap: 0.6rem; flex-wrap: nowrap; }
+      .hero-logo { width: 140px !important; }
+      .hero-badge { font-size: 0.55rem; padding: 0.3rem 0.7rem; white-space: nowrap; }
+      .hero h1 { font-size: 1.7rem; }
+      .hero p { font-size: 0.95rem; }
+      .hero-visual { gap: 0.6rem; }
+      .phone-mockup { width: 150px; height: 310px; border-radius: 28px; }
+      .phone-notch { width: 70px; height: 16px; border-radius: 0 0 10px 10px; }
+      .phone-screen { border-radius: 24px; }
+      .app-status-bar { padding: 1.4rem 0.5rem 0.15rem; font-size: 0.4rem; }
+      .app-greeting { padding: 0.25rem 0.5rem 0.35rem; gap: 0.3rem; }
+      .app-avatar { width: 22px; height: 22px; font-size: 0.35rem; }
+      .app-greeting-text small { font-size: 0.32rem; }
+      .app-greeting-text strong { font-size: 0.48rem; }
+      .app-grid { gap: 0.3rem; padding: 0.3rem 0.4rem; }
+      .app-tile { border-radius: 10px; padding: 0.6rem 0.3rem; }
+      .app-tile svg { width: 18px; height: 18px; }
+      .app-tile span { font-size: 0.38rem; }
+      .app-header-bar { padding: 1.4rem 0.5rem 0.3rem; }
+      .app-header-bar h3 { font-size: 0.6rem; }
+      .app-tabs { padding: 0 0.15rem; }
+      .app-tab { padding: 0.25rem 0.05rem; font-size: 0.3rem; }
+      .app-tab svg { width: 10px; height: 10px; }
+      .app-sub-tabs { padding: 0.2rem 0.3rem; gap: 0.5rem; }
+      .app-sub-tab { font-size: 0.3rem; }
+      .app-sub-tab svg { width: 7px; height: 7px; }
+      .vitals-list { padding: 0.2rem 0.3rem; gap: 0.25rem; }
+      .vital-row { padding: 0.35rem 0.4rem; gap: 0.35rem; border-radius: 8px; }
+      .vital-icon { width: 20px; height: 20px; }
+      .vital-icon svg { width: 10px; height: 10px; }
+      .vital-row span { font-size: 0.4rem; }
+      .phone-nav { padding: 0.25rem 0.15rem 0.5rem; }
+      .phone-nav-item svg { width: 12px; height: 12px; }
+      .phone-nav-item span { font-size: 0.3rem; }
+      .phone-nav-center { width: 22px; height: 22px; margin-bottom: 0.2rem; }
+      .phone-nav-center svg { width: 11px; height: 11px; }
+      .phone-nav-badge { width: 9px; height: 9px; font-size: 0.25rem; top: -2px; right: -4px; }
+      .store-btn { padding: 0.5rem 1rem; border-radius: 10px; }
+      .store-btn svg { width: 22px; height: 22px; }
+      .store-btn-text small { font-size: 0.55rem; }
+      .store-btn-text strong { font-size: 0.8rem; }
+      .features-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .feature-icon { width: 56px; height: 56px; }
+      .feature-icon img { width: 46px; }
+      .steps { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .step-num { width: 46px; height: 46px; font-size: 1rem; }
+      .benefits-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .benefit-icon { width: 46px; height: 46px; }
+      .benefit-icon img { width: 42px; }
+      .benefit-card { padding: 1.2rem; gap: 1rem; }
+      .cta-store-btn { padding: 0.7rem 1.5rem; border-radius: 12px; }
+      .cta-store-btn svg { width: 24px; height: 24px; }
+      .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+      .footer-links { flex-direction: row; gap: 2.5rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand">
+      <img src="heart_icon.png" alt="" class="nav-heart" />
+      <img src="Logo_Cercanos_Green.png" alt="Cercanos" class="nav-logo" />
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#download" class="nav-cta">Download App</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-brand-row">
+          <img src="Logo_Cercanos_Green.png" alt="Cercanos" class="hero-logo" />
+          <div class="hero-badge">Care Management App</div>
+        </div>
+        <h1>Your health, <em>connected</em> and always within reach.</h1>
+        <p>Cercanos partners with Itera Health to bring you a personalized care management experience. Track your health, connect with your care team, and take control of your wellness journey.</p>
+        <div class="store-buttons">
+          <a href="https://apps.apple.com" target="_blank" rel="noopener" class="store-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <div class="store-btn-text">
+              <small>Download on the</small>
+              <strong>App Store</strong>
+            </div>
+          </a>
+          <a href="https://play.google.com" target="_blank" rel="noopener" class="store-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.24-.84-.76-.84-1.35zm13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27zm.91-.91L19.15 12 17.72 9.79l-2.27 2.27 2.27 2.15zM6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/></svg>
+            <div class="store-btn-text">
+              <small>Get it on</small>
+              <strong>Google Play</strong>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <!-- Status bar -->
+            <div class="app-status-bar">
+              <span>2:31</span>
+              <span style="letter-spacing: 0.1em;">...</span>
+            </div>
+            <!-- Greeting -->
+            <div class="app-greeting">
+              <div class="app-avatar">JP</div>
+              <div class="app-greeting-text">
+                <small>Good afternoon,</small>
+                <strong>Jose Pinero</strong>
+              </div>
+              <div style="margin-left: auto; position: relative;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+                <span style="position:absolute;top:-4px;right:-6px;width:14px;height:14px;border-radius:50%;background:#ef4444;color:#fff;font-size:0.4rem;font-weight:700;display:flex;align-items:center;justify-content:center;">6</span>
+              </div>
+            </div>
+            <!-- App tile grid -->
+            <div class="app-grid">
+              <div class="app-tile tile-gray">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                <span>Coverage</span>
+              </div>
+              <div class="app-tile tile-green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                <span>Nutrition Orders</span>
+              </div>
+              <div class="app-tile tile-teal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#0f766e" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+                <span>Conditions</span>
+              </div>
+              <div class="app-tile tile-pink">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#e64d2e" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+                <span>Procedures</span>
+              </div>
+              <div class="app-tile tile-lavender">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+                <span>Allergies</span>
+              </div>
+              <div class="app-tile tile-green" style="background: #eef0f2;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#0f766e" stroke-width="2"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20 14.5c0 2.5-2 4.5-5.5 6.5-3.5-2-5.5-4-5.5-6.5V7h11v7.5z"/></svg>
+                <span>Immunizations</span>
+              </div>
+            </div>
+            <!-- Bottom nav -->
+            <div class="phone-nav">
+              <div class="phone-nav-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                <span>Home</span>
+              </div>
+              <div class="phone-nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                <span>Care Plan</span>
+              </div>
+              <div class="phone-nav-center">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+              <div class="phone-nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                <span>Team</span>
+              </div>
+              <div class="phone-nav-item">
+                <div class="phone-nav-badge">7</div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+                <span style="color: #ef4444;">Records</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Second phone: Records / Vitals -->
+        <div class="phone-mockup phone-2">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="app-header-bar">
+              <h3>Profile</h3>
+              <div class="bell-wrap">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+                <span style="position:absolute;top:-3px;right:-5px;width:12px;height:12px;border-radius:50%;background:#ef4444;color:#fff;font-size:0.35rem;font-weight:700;display:flex;align-items:center;justify-content:center;">6</span>
+              </div>
+            </div>
+            <!-- Top tabs -->
+            <div class="app-tabs">
+              <div class="app-tab active-tab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                <span>Observations</span>
+              </div>
+              <div class="app-tab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-3-3.87M9 21v-2a4 4 0 00-3-3.87"/><circle cx="12" cy="7" r="4"/></svg>
+                <span>Consents</span>
+              </div>
+              <div class="app-tab" style="position:relative;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#e64d2e" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span style="color: #e64d2e;">Appointments</span>
+                <span style="position:absolute;top:-2px;right:2px;width:10px;height:10px;border-radius:50%;background:#ef4444;color:#fff;font-size:0.3rem;font-weight:700;display:flex;align-items:center;justify-content:center;">1</span>
+              </div>
+              <div class="app-tab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c-4.97 0-9-2.69-9-6v-4l9-7 9 7v4c0 3.31-4.03 6-9 6z"/></svg>
+                <span>Medicati...</span>
+              </div>
+            </div>
+            <!-- Sub tabs -->
+            <div class="app-sub-tabs">
+              <div class="app-sub-tab active-sub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                Vital Signs
+              </div>
+              <div class="app-sub-tab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M8.5 10c-.83 0-1.5-.67-1.5-1.5v-5C7 2.67 7.67 2 8.5 2S10 2.67 10 3.5v5C10 9.33 9.33 10 8.5 10z"/></svg>
+                Laboratory
+              </div>
+              <div class="app-sub-tab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                Exam
+              </div>
+            </div>
+            <!-- Vitals list -->
+            <div class="vitals-list">
+              <div class="vital-row">
+                <div class="vital-icon vi-red"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg></div>
+                <span>Blood Pressure</span>
+              </div>
+              <div class="vital-row">
+                <div class="vital-icon vi-red"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+                <span>Heart Rate</span>
+              </div>
+              <div class="vital-row">
+                <div class="vital-icon vi-teal"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                <span>Peak Flow</span>
+              </div>
+              <div class="vital-row">
+                <div class="vital-icon vi-teal"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                <span>Peak Volume</span>
+              </div>
+              <div class="vital-row">
+                <div class="vital-icon vi-orange"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><rect x="6" y="2" width="12" height="20" rx="2"/></svg></div>
+                <span>Body Weight</span>
+              </div>
+              <div class="vital-row">
+                <div class="vital-icon vi-red"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg></div>
+                <span>Blood Oxygen</span>
+              </div>
+              <div class="vital-row">
+                <div class="vital-icon vi-blue"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/></svg></div>
+                <span>Body Temperature</span>
+              </div>
+            </div>
+            <!-- Bottom nav -->
+            <div class="phone-nav">
+              <div class="phone-nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                <span>Home</span>
+              </div>
+              <div class="phone-nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                <span>Care Plan</span>
+              </div>
+              <div class="phone-nav-center">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+              <div class="phone-nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                <span>Team</span>
+              </div>
+              <div class="phone-nav-item active">
+                <div class="phone-nav-badge">7</div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+                <span>Records</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="section-inner">
+      <div class="how-header">
+        <span class="section-label">Getting Started</span>
+        <h2 class="section-title">Simple steps to better health</h2>
+        <p class="section-subtitle">Getting started with your personal care management app takes just a few minutes.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>Download the App</h4>
+          <p>Get the Itera Health app from the App Store or Google Play. It's free for all Cercanos patients.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>Activate Your Account</h4>
+          <p>You will receive an email from your Cercanos care team with instructions to activate your account and set up your personal health profile.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>Connect Your Devices</h4>
+          <p>Pair your blood pressure monitor, glucometer, or other health devices for automatic tracking.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h4>Start Your Journey</h4>
+          <p>Follow your personalized care plan, track your progress, and connect with your care team anytime.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-inner">
+      <div class="features-header">
+        <span class="section-label">App Features</span>
+        <h2 class="section-title">Everything you need to manage your care</h2>
+        <p class="section-subtitle">Powered by Itera Health's connected care ecosystem, designed with the warmth and cultural understanding of Cercanos.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon fi-orange">
+            <img src="icon_01.png" alt="" />
+          </div>
+          <h3>Real-Time Health Monitoring</h3>
+          <p>Track your vitals, blood pressure, glucose levels, and more. Connected medical-grade devices sync automatically with your care plan.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon fi-olive">
+            <img src="icon_21.png" alt="" />
+          </div>
+          <h3>Care Team Connection</h3>
+          <p>Stay connected with your doctors, nutritionists, health coaches, and care coordinators. Secure messaging keeps your whole team in sync.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon fi-navy">
+            <img src="icon_06.png" alt="" />
+          </div>
+          <h3>Personalized Care Plans</h3>
+          <p>Dynamic care plans that adapt to your progress. Your treatment pathway evolves based on real-time data from your daily health activities.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon fi-purple">
+            <img src="icon_09.png" alt="" />
+          </div>
+          <h3>Smart Reminders</h3>
+          <p>Never miss a medication, appointment, or health check. Personalized alerts keep you on track with your wellness goals every day.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon fi-gold">
+            <img src="icon_23.png" alt="" />
+          </div>
+          <h3>Health Education</h3>
+          <p>Access bilingual educational content about your conditions. Culturally relevant nutrition guides, exercise tips, and wellness resources at your fingertips.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon fi-tan">
+            <img src="icon_14.png" alt="" />
+          </div>
+          <h3>Secure Messaging</h3>
+          <p>Communicate directly with your care team in your preferred language. Share updates, ask questions, and receive guidance when you need it most.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="benefits" id="benefits">
+    <div class="section-inner">
+      <div class="benefits-header">
+        <span class="section-label">Patient Benefits</span>
+        <h2 class="section-title">Why patients love using the app</h2>
+        <p class="section-subtitle">Designed with you in mind, culturally sensitive and available in English and Spanish.</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <img src="icon_20.png" alt="" />
+          </div>
+          <div>
+            <h4>24/7 Access to Your Care Team</h4>
+            <p>Reach your health coach, nutritionist, or care coordinator whenever you need support. No more waiting for office hours.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <img src="icon_02.png" alt="" />
+          </div>
+          <div>
+            <h4>Culturally Competent Care</h4>
+            <p>Content and communication designed for Hispanic communities. Bilingual support with culturally relevant health guidance.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <img src="icon_15.png" alt="" />
+          </div>
+          <div>
+            <h4>Track Your Progress</h4>
+            <p>See how far you've come with visual dashboards. Celebrate milestones and stay motivated on your path to better health.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <img src="icon_13.png" alt="" />
+          </div>
+          <div>
+            <h4>Secure and Private</h4>
+            <p>Your health data is encrypted and protected. HIPAA-compliant platform ensures your information stays safe and confidential.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <img src="icon_12.png" alt="" />
+          </div>
+          <div>
+            <h4>Complete Health Records</h4>
+            <p>Access your care plans, lab results, medication lists, and visit summaries all in one place. Share them easily with any provider.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <img src="icon_04.png" alt="" />
+          </div>
+          <div>
+            <h4>Family Caregiver Access</h4>
+            <p>Invite family members to view your care plan and progress. Keep your loved ones informed and involved in your health journey.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD CTA -->
+  <section class="download-cta" id="download">
+    <div class="section-inner">
+      <span class="section-label">Download Now</span>
+      <h2 class="section-title">Ready to take control of your health?</h2>
+      <p class="section-subtitle">Download the Itera Health app today and start your personalized care journey with Cercanos.</p>
+      <div class="cta-stores">
+        <a href="https://apps.apple.com" target="_blank" rel="noopener" class="cta-store-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div class="store-btn-text">
+            <small>Download on the</small>
+            <strong>App Store</strong>
+          </div>
+        </a>
+        <a href="https://play.google.com" target="_blank" rel="noopener" class="cta-store-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.24-.84-.76-.84-1.35zm13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27zm.91-.91L19.15 12 17.72 9.79l-2.27 2.27 2.27 2.15zM6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/></svg>
+          <div class="store-btn-text">
+            <small>Get it on</small>
+            <strong>Google Play</strong>
+          </div>
+        </a>
+      </div>
+      <p class="cta-note">Free for all Cercanos Care patients. You will receive an email with instructions to activate your account.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer-gradient"></div>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="Logo_Cercanos_Green.png" alt="Cercanos" style="width: 160px; height: auto;" />
+        <p>connecting care &amp; community</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Platform</h5>
+          <a href="https://itera.health" target="_blank" rel="noopener">Itera Health</a>
+          <a href="#">Features</a>
+          <a href="#">For Patients</a>
+        </div>
+        <div class="footer-col">
+          <h5>Support</h5>
+          <a href="#">Help Center</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Cercanos Care. All rights reserved.</p>
+      <p>Powered by <a href="https://itera.health" target="_blank" rel="noopener" style="color: var(--orange);">Itera Health</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
